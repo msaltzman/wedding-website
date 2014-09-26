@@ -1,0 +1,17 @@
+{
+  "name": "wedding",
+  "description": "",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "angular-route": "1.2.x",
+    "angular": "1.2.x",
+    "jquery": "2.1.x",
+    "bootstrap": "3.2.x",
+    "angular-timer" : "1.1.x",
+    "responseiveGridSystem" : "https://github.com/grahammiller/ResponsiveGridSystem.git#master"
+  },
+  "resolutions": {
+    "angular": "1.2.x"
+  }
+}

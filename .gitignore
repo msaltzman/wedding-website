@@ -1,0 +1,30 @@
+#Outdated build scripts
+build/*
+!build/deploy_console.sh
+
+#Library files handled by npm
+lib/
+node_modules/
+bower_components/
+
+#Grunt command output files
+public/coverage/
+public/javadoc/
+public/*.css
+test/reports/
+test/client/
+
+#Third party libraries
+public/amcharts/
+public/img/
+
+#Webstorm config files
+.idea/
+
+#HTML Test Files
+.html
+
+#Project files
+.project
+.pydevproject
+.git

@@ -1,0 +1,12 @@
+{
+  "dependencies" : {
+    "koa" : "x.x.x",
+    "jade" : "x.x.x",
+    "koa-route" : "x.x.x",
+    "koa-static" : "x.x.x",
+    "co-views" : "x.x.x",
+    "co-body" : "x.x.x",
+    "swig" : "x.x.x"
+  },
+  "engine" : "0.11.13"
+}
