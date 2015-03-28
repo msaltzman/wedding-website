@@ -2,7 +2,10 @@
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-
+$servername = "thehareinthemoon.net";
+$password = "u&bK%ReFD0._";
+$username = "theha46_wedding";
+$database = "theha46_guests";
 
 $conn = new mysqli( $servername, $username, $password, $database );
 
@@ -18,47 +21,50 @@ function getGuest( $firstname, $lastname, $conn )
     echo "{ \"ERROR\" : \"Prepare Failed\" }";
   }
 
-  if( !$stmt->bind_param( "ss" $firstname, $lastname ) )
+  if( !$stmt->bind_param( "ss", $firstname, $lastname ) )
   {
     echo "{ \"ERROR\" : \"Bind Failed\" }";
   }
 
-  return $stmt->execute();
+  $stmt->execute();
+  return $stmt;
 }
 
 function getAdditionalGuestsPk( $pk, $conn )
 {
-  if( !( $stmt = $conn->prepare( "SELECT can_rsvp_for FROM guest_link WHERE primary = ? ) ) )
+  if( !( $stmt = $conn->prepare( "SELECT can_rsvp_for FROM GUEST_LINK WHERE guest_pk = ?" ) ) )
   {
     echo "{ \"ERROR\" : \"Prepare Failed\" }";
   }
 
-  if( !$stmt->bind_param( "i" $pk ) )
+  if( !$stmt->bind_param( "i", $pk ) )
   {
     echo "{ \"ERROR\" : \"Bind Failed\" }";
   }
 
-  return $stmt->execute();
+  $stmt->execute();
+  return $stmt;
 }
 
 function getAdditionalGuest( $pk, $conn )
 {
-  if( !( $stmt = $conn->prepare( "SELECT * FROM guestlist WHERE pk = ? ) ) )
+  if( !( $stmt = $conn->prepare( "SELECT pk, firstname, lastname, going, gluten_free, kosher, number_of_children, number_of_children_going FROM guestlist WHERE pk = ?" ) ) )
   {
     echo "{ \"ERROR\" : \"Prepare Failed\" }";
   }
 
-  if( !$stmt->bind_param( "i" $pk ) )
+  if( !$stmt->bind_param( "i", $pk ) )
   {
     echo "{ \"ERROR\" : \"Bind Failed\" }";
   }
 
-  return $stmt->execute();
+  $stmt->execute();
+  return $stmt;
 }
 
 function createJSONObject( $stmt, $conn, $isPrimary )
 {
-  $data = "{ "
+  $data = "{ ";
   $first = True;
 
   $stmt->bind_result( $pk, $firstname, $lastname, $going, $gluten_free, $kosher, $number_of_children, $number_of_children_going );
@@ -82,14 +88,14 @@ function createJSONObject( $stmt, $conn, $isPrimary )
   if( $isPrimary )
   {
     $first = True;
-    $additional = getAdditionalGuestsPk( mysql_result( $stmt, 0, "pk" ) );
+    $additional = getAdditionalGuestsPk( $pk, $conn );
     $additional->bind_result( $guest_pk );
 
     $data .= "\"additional\" : [ ";
 
     while( $additional->fetch() )
     {
-      $guest = getAdditionalGuest( $pk, $conn );
+      $guest = getAdditionalGuest( $guest_pk, $conn );
       
       if ( !$first )
       {
@@ -110,7 +116,7 @@ function createJSONObject( $stmt, $conn, $isPrimary )
 }
 
 $stmt = getGuest( $_POST[ "firstname" ], $_POST[ "lastname" ], $conn );
-$data = createJSONObject( $stmt, "", $conn, True );
+$data = createJSONObject( $stmt, $conn, True );
 $conn->close();
 
 header( "Content-Type: application/json" );
