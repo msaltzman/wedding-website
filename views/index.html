@@ -1,0 +1,31 @@
+<html ng-app="wedding">
+  <head>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/responseiveGridSystem/js/responsivegridsystem.js"></script>
+    <script src="/bower_components/ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/public/css/wedding.css"/>
+    <script src="/bower_components/angular-timer/dist/angular-timer.min.js"></script>
+    <script src="/public/javascript/wedding-angular.js"></script>
+  </head>
+  <body></body>
+  <div class="heading">
+    <h4 class="header">Matthew and Genevieve</h4>
+    <timer end-time="1434146400000" interval="1000"><span class="header">{{days}} days, {{hours}} hours</span></timer>
+  </div>
+  <div class="section group">
+    <div ng-controller="AccordionDemoCtrl" class="col-md-3 col-sm-3 nav">
+      <accordion close-others="oneAtATime">
+        <accordion-group heading="Home" is-open="status.isFirstOpen" style="background-color:#EBF0F2"><a href="#welcome">Welcome!</a></accordion-group>
+        <accordion-group heading="{{group.title}}" ng-repeat="group in groups" style="background-color:#EBF0F2">
+          <div ng-repeat="elem in group.content" style="margin-bottom:10px"><a ng-href="#{{whiteSpaceRemover( elem )}}">{{elem}}</a></div>
+        </accordion-group>
+      </accordion>
+    </div>
+    <div style="display:inline-block" class="col-md-9 col-sm-9">
+      <div ng-view="ng-view" class="body"></div>
+    </div>
+  </div>
+</html>

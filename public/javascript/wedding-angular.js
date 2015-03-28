@@ -1,4 +1,4 @@
-var app = angular.module('plunker', ['ui.bootstrap', 'timer', 'ngRoute']);
+var app = angular.module( 'wedding', ['ui.bootstrap', 'timer', 'ngRoute']);
 
 function AccordionDemoCtrl( $scope )
 {
@@ -15,6 +15,10 @@ function AccordionDemoCtrl( $scope )
     {
       title: 'Guest Information',
       content: [ 'Leesburg', 'Hotel' ]
+    },
+    {
+      title: "RSVP",
+      content: [ 'RSVP' ]
     }
   ];
   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
@@ -67,6 +71,9 @@ app.config( [ '$routeProvider',
       } ).when( "/Macys",
       {
         templateUrl: '/public/html/templates/macys.html'
+      } ).when( '/RSVP',
+      {
+        templateUrl: '/public/html/templates/rsvp.html'
       } ).otherwise(
       {
         redirectTo : "/welcome"
