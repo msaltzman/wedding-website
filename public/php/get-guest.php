@@ -93,9 +93,16 @@ function createJSONObject( $stmt, $conn, $isPrimary )
 
     $data .= "\"additional\" : [ ";
 
+    $additional_guests = array();
+
     while( $additional->fetch() )
     {
-      $guest = getAdditionalGuest( $guest_pk, $conn );
+      $additional_guests[] = $guest_pk;
+    }
+
+    foreach( $additional_guests as $new_guest_pk )
+    {
+      $guest = getAdditionalGuest( $new_guest_pk, $conn );
       
       if ( !$first )
       {
