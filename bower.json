@@ -9,6 +9,7 @@
     "jquery": "2.1.x",
     "bootstrap": "3.2.x",
     "angular-timer" : "1.1.x",
+    "angular-sanitize" : "x.x.x",
     "responseiveGridSystem" : "https://github.com/grahammiller/ResponsiveGridSystem.git#master",
     "ui-bootstrap" : "https://github.com/angular-ui/bootstrap-bower.git#master"
   },

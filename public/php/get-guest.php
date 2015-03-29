@@ -79,10 +79,10 @@ function createJSONObject( $stmt, $conn, $isPrimary )
     $data .= "\"firstname\" : \"" . $firstname . "\", ";
     $data .= "\"lastname\" : \"" . $lastname . "\", ";
     $data .= "\"going\" : " . $going . ", ";
-    $data .= "\"gluten free\" : " . $gluten_free . ", ";
+    $data .= "\"gluten_free\" : " . $gluten_free . ", ";
     $data .= "\"kosher\" : " . $kosher . ", ";
-    $data .= "\"number of children\" : " . $number_of_children . ", ";
-    $data .= "\"children going\" : " . $number_of_children_going;  
+    $data .= "\"number_of_children\" : " . $number_of_children . ", ";
+    $data .= "\"number_of_children_going\" : " . $number_of_children_going;  
   }
 
   if( $isPrimary )

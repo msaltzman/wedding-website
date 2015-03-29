@@ -1,4 +1,4 @@
-var app = angular.module( 'wedding', ['ui.bootstrap', 'timer', 'ngRoute']);
+var app = angular.module( 'wedding', ['ui.bootstrap', 'timer', 'ngRoute', 'ngSanitize' ]);
 
 function AccordionDemoCtrl( $scope )
 {
@@ -43,7 +43,6 @@ function AccordionDemoCtrl( $scope )
 app.config( [ '$routeProvider',
   function( $routeProvider )
   {
-    console.log( $routeProvider.location );
     $routeProvider.when( '/welcome',
       {
         templateUrl: '/public/html/templates/welcome.html'

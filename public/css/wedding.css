@@ -27,8 +27,21 @@ div.nav {
   vertical-align : top;
 }
 
+div.rsvp {
+  display : inline-table;
+  width : 15%;
+  margin : 5px;
+}
+
+div.rsvp2 {
+  display : inline-table;
+  width : 36%;
+  margin : 5px;
+}
+
 img {
   width : 80%;
   height : auto;
   margin : 15px;
 }
+
