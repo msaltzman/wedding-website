@@ -110,7 +110,6 @@ function createJSONObject( $stmt, $conn, $isPrimary )
       }
 
       $data .= createJSONObject( $guest, $conn, False );
-      $guest->close();
       $first = False;
     }
 
