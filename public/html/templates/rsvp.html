@@ -1,24 +1,37 @@
-<div ng-controller="rsvpController" id="findGuestRsvpList">
-  <form ng-submit="find()">
-    <div class="rsvp">First Name: </div><input type="text" ng-model="guest.firstname" />
-    <br />
-    <div class="rsvp">Last Name: </div><input type="text" ng-model="guest.lastname" />
-    <br />
-    <br />
-    <input type="submit" id="submit" value="Submit" />
-  </form>
-</div>
-<div ng-controller="rsvpController" id="rsvpForGuests">
-  <form ng-submit="rsvp()">
-    <div class="rsvp"><h4>{{ guest.firstname }} {{ guest.lastname }}</h4></div>
-    <br />
-    <div class="rsvp2">Will you be able to attend our wedding? </div><input type="radio" ng-model="guest.going" value="1" checked>Yes    <input type="radio" ng-model="guest.going" value="0">No
-    <br />
-    <div class="rsvp2">Any dietary restrictions? </div><input type="checkbox" ng-model="guest.kosher" value="1">Kosher    <input type="checkbox" ng-model="guest.gluten_free" value="1">Gluten Free
-    <br />
-    <div compile="hasKids()" />
-    <div ng-repeat="newGuest in guest.additional">
-      Hi
-    </div>
-  </form>
+<div ng-controller="rsvpController">
+  <div ng-show="!foundGuest && !submit">
+    <form ng-submit="find()">
+      <div class="rsvp">First Name: </div><input type="text" ng-model="guest.firstname" />
+      <br />
+      <div class="rsvp">Last Name: </div><input type="text" ng-model="guest.lastname" />
+      <br />
+      <br />
+      <input type="submit" id="submit" value="Submit" />
+    </form>
+  </div>
+  <div ng-show="foundGuest && !submit">
+    <form ng-submit="rsvp()">
+      <div class="rsvp2"><h4>{{ guest.firstname }} {{ guest.lastname }}</h4></div>
+      <br />
+      <div class="rsvp2">Will you be able to attend our wedding? </div><input type="radio" ng-model="guest.going" value="1" checked>Yes    <input type="radio" ng-model="guest.going" value="0">No
+      <br />
+      <div class="rsvp2">Any dietary restrictions? </div><input type="checkbox" ng-model="guest.kosher" value="1">Kosher    <input type="checkbox" ng-model="guest.gluten_free" value="1">Gluten Free
+      <br />
+      <div show-kids guest="guest" id="kids"/>
+      <div ng-repeat="newGuest in guest.additional">
+        <br />
+        <div class="rsvp2">Will <b>{{ newGuest.firstname }} {{ newGuest.lastname }}</b> be able to attend our wedding? </div><input type="radio" ng-model="guest.going" value="1" checked>Yes    <input type="radio" ng-model="guest.going" value="0">No
+        <br />
+        <div class="rsvp2">Any dietary restrictions for <b>{{ newGuest.firstname }}</b>? </div><input type="checkbox" ng-model="guest.kosher" value="1">Kosher    <input type="checkbox" ng-model="guest.gluten_free" value="1">Gluten Free
+        <br />
+      </div>
+      <input type="submit" id="submit" value="Submit" />
+    </form>
+  </div>
+  <div ng-show="success && submit">
+    Thank you for your RSVP! 
+  </div>
+  <div ng-show="!success && submit">
+    There was an issue storing your RSVP. Please try again later!
+  </div>
 </div>

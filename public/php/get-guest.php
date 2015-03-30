@@ -1,11 +1,4 @@
 <?php
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-
-$servername = "thehareinthemoon.net";
-$password = "u&bK%ReFD0._";
-$username = "theha46_wedding";
-$database = "theha46_guests";
 
 $conn = new mysqli( $servername, $username, $password, $database );
 
@@ -76,6 +69,7 @@ function createJSONObject( $stmt, $conn, $isPrimary )
       $data .= " }, { ";
     }
 
+    $data .- "\"pk\" : " . $pk . ", ";
     $data .= "\"firstname\" : \"" . $firstname . "\", ";
     $data .= "\"lastname\" : \"" . $lastname . "\", ";
     $data .= "\"going\" : " . $going . ", ";
